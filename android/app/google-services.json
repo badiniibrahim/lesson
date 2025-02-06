@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "801025806796",
+    "project_id": "lesson-c5a3e",
+    "storage_bucket": "lesson-c5a3e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801025806796:android:4f25659940d22f6d7e8d69",
+        "android_client_info": {
+          "package_name": "com.badiniibrahim.lesson"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSlbWOxen9w3D3n__8sg4rfPsuPhpFnJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

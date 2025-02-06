@@ -1,0 +1,31 @@
+{
+  "singIn": {
+    "welcome": "Bon retour, vous nous avez manqué",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "sign_in_text": "Se connecter",
+    "already": "Vous n'avez pas encore de compte ? ",
+    "sign_up": "S'inscrire",
+    "verification_text": "Veuillez valider votre email",
+    "user_not_found": "Aucun utilisateur trouvé pour cet e-mail.",
+    "wrong_password": "Mot de passe incorrect fourni pour cet utilisateur.",
+    "or": "Ou continuez avec"
+  },
+  "sign_up": {
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "full_name": "Nom complet",
+    "new_account": "Créer un nouveau compte",
+    "btn_text": "Créer un compte",
+    "already_account": "Vous avez déjà un compte ? ",
+    "sign_up": "S'inscrire",
+    "auth_verification_email_sent": "Un e-mail de vérification vous a été envoyé. Veuillez vérifier votre boîte de réception et suivre les instructions."
+  },
+
+  "dashboard": {
+    "profile": "Profil",
+    "home": "Accueil",
+    "progress": "Progression",
+    "explore": "Explorer"
+  }
+}
