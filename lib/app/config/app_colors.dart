@@ -1,18 +1,31 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static Color primary = const Color.fromARGB(255, 112, 185, 190);
-  static const secondary = Color(0xFF0EA5E9); // Bleu vif
-  static const accent = Color(0xFFF59E0B); // Orange chaleureux
+  static const Color primary = const Color.fromARGB(255, 112, 185, 190);
+  static const Color secondary = Color(0xFF32B5FF);
+  static const Color accent = Color(0xFFFF6584);
+  static const Color background = Color(0xFFF8F9FE);
+  static const Color cardBackground = Colors.white;
+  static const Color textPrimary = Color(0xFF2D3142);
+  static const Color textSecondary = Color(0xFF9098B1);
+  static const Color success = Color(0xFF4CAF50);
+  static const Color border = Color(0xFFEAECF0);
 
-  // Couleurs sémantiques
-  static const expense = Color(0xFFEF4444); // Rouge vif
-  static const income = Color(0xFF22C55E); // Vert frais
-  static const savings = Color(0xFF8B5CF6); // Violet royal
+  static final LinearGradient primaryGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      primary,
+      primary.withOpacity(0.8),
+    ],
+  );
 
-  // Couleurs neutres
-  static const background = Color(0xFFF8FAFC);
-  static const surface = Colors.white;
-  static const text = Color(0xFF1E293B);
-  static const textLight = Color(0xFF64748B);
+  static final LinearGradient accentGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      accent,
+      accent.withOpacity(0.8),
+    ],
+  );
 }

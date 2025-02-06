@@ -24,53 +24,108 @@ class CourseDetailView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[50],
-      body: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          _buildAppBar(),
-          SliverToBoxAdapter(
-            child: Transform.translate(
-              offset: const Offset(0, -30),
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(32),
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(24, 32, 24, 0),
-                      child: Text(
-                        course.description,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey[700],
-                          height: 1.6,
-                        ),
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        backgroundColor: AppColors.background,
+        body: NestedScrollView(
+          physics: const BouncingScrollPhysics(),
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              _buildAppBar(),
+              SliverToBoxAdapter(
+                child: Transform.translate(
+                  offset: const Offset(0, -30),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: AppColors.cardBackground,
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(32),
                       ),
                     ),
-                    const SizedBox(height: 32),
-                    _buildCourseStats(),
-                    const SizedBox(height: 40),
-                    _buildChaptersSection(),
-                    const SizedBox(height: 40),
-                    _buildQuizSection(),
-                    const SizedBox(height: 40),
-                    _buildFlashcardsSection(),
-                    const SizedBox(height: 40),
-                    _buildQASection(),
-                    const SizedBox(height: 32),
-                  ],
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(24, 32, 24, 0),
+                          child: Text(
+                            course.description,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: AppColors.textSecondary,
+                              height: 1.6,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 32),
+                        _buildCourseStats(),
+                        const SizedBox(height: 24),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
+              SliverPersistentHeader(
+                delegate: _SliverAppBarDelegate(
+                  TabBar(
+                    labelColor: AppColors.primary,
+                    unselectedLabelColor: AppColors.textSecondary,
+                    indicatorColor: AppColors.primary,
+                    indicatorWeight: 3,
+                    labelStyle: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                    unselectedLabelStyle: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                    ),
+                    tabs: const [
+                      Tab(
+                        icon: Icon(FluentIcons.book_24_filled),
+                        text: 'Chapitres',
+                      ),
+                      Tab(
+                        icon: Icon(FluentIcons.quiz_new_24_filled),
+                        text: 'Quiz',
+                      ),
+                      Tab(
+                        icon: Icon(FluentIcons.flash_24_filled),
+                        text: 'Flashcards',
+                      ),
+                      Tab(
+                        icon: Icon(FluentIcons.chat_24_filled),
+                        text: 'FAQ',
+                      ),
+                    ],
+                  ),
+                ),
+                pinned: true,
+              ),
+            ];
+          },
+          body: TabBarView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: _buildChaptersSection(),
+              ),
+              SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: _buildQuizSection(),
+              ),
+              SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: _buildFlashcardsSection(),
+              ),
+              SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: _buildQASection(),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -81,6 +136,7 @@ class CourseDetailView extends GetView<HomeController> {
       pinned: true,
       stretch: true,
       backgroundColor: Colors.transparent,
+      elevation: 0,
       flexibleSpace: FlexibleSpaceBar(
         stretchModes: const [
           StretchMode.zoomBackground,
@@ -93,7 +149,6 @@ class CourseDetailView extends GetView<HomeController> {
               tag: 'course_${course.id}',
               child: Image.network(
                 "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDE5MTZ8MHwxfHNlYXJjaHwxfHxwYXJpc3xlbnwwfHx8fDE3Mzg3NzExNTV8MA&ixlib=rb-4.0.3&q=80&w=1080",
-                //course.bannerImage,
                 fit: BoxFit.cover,
               ),
             ),
@@ -122,8 +177,15 @@ class CourseDetailView extends GetView<HomeController> {
                       vertical: 8,
                     ),
                     decoration: BoxDecoration(
-                      color: AppColors.primary,
+                      gradient: AppColors.accentGradient,
                       borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.accent.withOpacity(0.3),
+                          blurRadius: 8,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
                     ),
                     child: Text(
                       course.category,
@@ -139,7 +201,7 @@ class CourseDetailView extends GetView<HomeController> {
                     course.courseTitle,
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 28,
+                      fontSize: 32,
                       fontWeight: FontWeight.bold,
                       height: 1.3,
                       shadows: [
@@ -163,10 +225,17 @@ class CourseDetailView extends GetView<HomeController> {
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.9),
             shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 8,
+                offset: const Offset(0, 4),
+              ),
+            ],
           ),
           child: const Icon(
             FluentIcons.arrow_left_24_regular,
-            color: Colors.black87,
+            color: AppColors.textPrimary,
           ),
         ),
         onPressed: () => Get.back(),
@@ -178,10 +247,17 @@ class CourseDetailView extends GetView<HomeController> {
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.9),
               shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 8,
+                  offset: const Offset(0, 4),
+                ),
+              ],
             ),
             child: const Icon(
               FluentIcons.share_24_regular,
-              color: Colors.black87,
+              color: AppColors.textPrimary,
             ),
           ),
           onPressed: () {/* Logique de partage */},
@@ -206,9 +282,16 @@ class CourseDetailView extends GetView<HomeController> {
         ),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: AppColors.primary.withOpacity(0.1),
+          color: AppColors.border,
           width: 1,
         ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primary.withOpacity(0.1),
+            blurRadius: 24,
+            offset: const Offset(0, 8),
+          ),
+        ],
       ),
       child: IntrinsicHeight(
         child: Row(
@@ -252,6 +335,13 @@ class CourseDetailView extends GetView<HomeController> {
           decoration: BoxDecoration(
             color: AppColors.primary.withOpacity(0.1),
             shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.primary.withOpacity(0.2),
+                blurRadius: 12,
+                offset: const Offset(0, 4),
+              ),
+            ],
           ),
           child: Icon(
             icon,
@@ -262,7 +352,7 @@ class CourseDetailView extends GetView<HomeController> {
         const SizedBox(height: 12),
         Text(
           value,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
             color: AppColors.primary,
@@ -271,9 +361,9 @@ class CourseDetailView extends GetView<HomeController> {
         const SizedBox(height: 4),
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
-            color: Colors.grey[600],
+            color: AppColors.textSecondary,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -291,6 +381,13 @@ class CourseDetailView extends GetView<HomeController> {
             decoration: BoxDecoration(
               color: AppColors.primary.withOpacity(0.1),
               borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.primary.withOpacity(0.2),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
+                ),
+              ],
             ),
             child: Icon(
               icon,
@@ -304,7 +401,7 @@ class CourseDetailView extends GetView<HomeController> {
             style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: Colors.black87,
+              color: AppColors.textPrimary,
             ),
           ),
         ],
@@ -316,8 +413,9 @@ class CourseDetailView extends GetView<HomeController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 24),
         _buildSectionTitle('Chapitres', FluentIcons.book_24_filled),
-        const SizedBox(height: 16),
+        const SizedBox(height: 24),
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -327,6 +425,7 @@ class CourseDetailView extends GetView<HomeController> {
             return _buildChapterCard(course.chapters[index], index + 1);
           },
         ),
+        const SizedBox(height: 24),
       ],
     );
   }
@@ -339,13 +438,13 @@ class CourseDetailView extends GetView<HomeController> {
       return Container(
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.cardBackground,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+              blurRadius: 20,
+              offset: const Offset(0, 8),
             ),
           ],
         ),
@@ -363,8 +462,8 @@ class CourseDetailView extends GetView<HomeController> {
                 gradient: LinearGradient(
                   colors: isCompleted
                       ? [
-                          Colors.green.shade400,
-                          Colors.green.shade600,
+                          AppColors.success,
+                          AppColors.success.withOpacity(0.8),
                         ]
                       : [
                           AppColors.primary,
@@ -372,6 +471,15 @@ class CourseDetailView extends GetView<HomeController> {
                         ],
                 ),
                 borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: isCompleted
+                        ? AppColors.success.withOpacity(0.3)
+                        : AppColors.primary.withOpacity(0.3),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
               child: Center(
                 child: isCompleted
@@ -402,8 +510,24 @@ class CourseDetailView extends GetView<HomeController> {
               child: Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: isCompleted ? Colors.green : AppColors.primary,
+                  gradient: isCompleted
+                      ? LinearGradient(
+                          colors: [
+                            AppColors.success,
+                            AppColors.success.withOpacity(0.8),
+                          ],
+                        )
+                      : AppColors.primaryGradient,
                   borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: isCompleted
+                          ? AppColors.success.withOpacity(0.3)
+                          : AppColors.primary.withOpacity(0.3),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
                 ),
                 child: Icon(
                   isCompleted
@@ -419,7 +543,7 @@ class CourseDetailView extends GetView<HomeController> {
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: Colors.black87,
+                color: AppColors.textPrimary,
               ),
             ),
             subtitle: Column(
@@ -431,20 +555,21 @@ class CourseDetailView extends GetView<HomeController> {
                     Icon(
                       FluentIcons.book_24_regular,
                       size: 16,
-                      color: Colors.grey[600],
+                      color: AppColors.textSecondary,
                     ),
                     const SizedBox(width: 8),
                     Text(
                       '${chapter.content.length} leçons',
-                      style: TextStyle(
-                        color: Colors.grey[600],
+                      style: const TextStyle(
+                        color: AppColors.textSecondary,
                       ),
                     ),
                     const SizedBox(width: 16),
                     Text(
                       '${(progress * 100).toInt()}% complété',
                       style: TextStyle(
-                        color: isCompleted ? Colors.green : AppColors.primary,
+                        color:
+                            isCompleted ? AppColors.success : AppColors.primary,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -455,9 +580,9 @@ class CourseDetailView extends GetView<HomeController> {
                   borderRadius: BorderRadius.circular(2),
                   child: LinearProgressIndicator(
                     value: progress,
-                    backgroundColor: Colors.grey[200],
+                    backgroundColor: AppColors.border,
                     valueColor: AlwaysStoppedAnimation<Color>(
-                      isCompleted ? Colors.green : AppColors.primary,
+                      isCompleted ? AppColors.success : AppColors.primary,
                     ),
                     minHeight: 4,
                   ),
@@ -478,8 +603,12 @@ class CourseDetailView extends GetView<HomeController> {
       margin: const EdgeInsets.fromLTRB(20, 0, 20, 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.grey[50],
+        color: AppColors.background,
         borderRadius: BorderRadius.circular(15),
+        border: Border.all(
+          color: AppColors.border,
+          width: 1,
+        ),
       ),
       child: Row(
         children: [
@@ -501,7 +630,7 @@ class CourseDetailView extends GetView<HomeController> {
               content.topic,
               style: const TextStyle(
                 fontSize: 14,
-                color: Colors.black87,
+                color: AppColors.textPrimary,
               ),
             ),
           ),
@@ -514,6 +643,7 @@ class CourseDetailView extends GetView<HomeController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 24),
         _buildSectionTitle('Quiz', FluentIcons.quiz_new_24_filled),
         const SizedBox(height: 24),
         Container(
@@ -545,7 +675,7 @@ class CourseDetailView extends GetView<HomeController> {
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppColors.cardBackground,
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [
                           BoxShadow(
@@ -566,12 +696,12 @@ class CourseDetailView extends GetView<HomeController> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Testez vos connaissances',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black87,
+                              color: AppColors.textPrimary,
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -586,7 +716,7 @@ class CourseDetailView extends GetView<HomeController> {
                             ),
                             child: Text(
                               '${course.quiz.length} questions',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: AppColors.primary,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -600,9 +730,11 @@ class CourseDetailView extends GetView<HomeController> {
               ),
               Container(
                 padding: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(32),
+                decoration: const BoxDecoration(
+                  color: AppColors.cardBackground,
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(32),
+                  ),
                 ),
                 child: Column(
                   children: [
@@ -618,7 +750,7 @@ class CourseDetailView extends GetView<HomeController> {
                         Container(
                           height: 40,
                           width: 1,
-                          color: Colors.grey[200],
+                          color: AppColors.border,
                         ),
                         Expanded(
                           child: _buildQuizStat(
@@ -642,14 +774,7 @@ class CourseDetailView extends GetView<HomeController> {
                           vertical: 16,
                         ),
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              AppColors.primary,
-                              AppColors.primary.withOpacity(0.8),
-                            ],
-                          ),
+                          gradient: AppColors.primaryGradient,
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(
@@ -659,16 +784,16 @@ class CourseDetailView extends GetView<HomeController> {
                             ),
                           ],
                         ),
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(
+                            Icon(
                               FluentIcons.play_24_filled,
                               color: Colors.white,
                               size: 24,
                             ),
-                            const SizedBox(width: 12),
-                            const Text(
+                            SizedBox(width: 12),
+                            Text(
                               'Commencer le quiz',
                               style: TextStyle(
                                 fontSize: 16,
@@ -686,6 +811,7 @@ class CourseDetailView extends GetView<HomeController> {
             ],
           ),
         ),
+        const SizedBox(height: 24),
       ],
     );
   }
@@ -694,8 +820,9 @@ class CourseDetailView extends GetView<HomeController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 24),
         _buildSectionTitle('Flashcards', FluentIcons.flash_24_filled),
-        const SizedBox(height: 16),
+        const SizedBox(height: 24),
         SizedBox(
           height: 220,
           child: ListView.builder(
@@ -715,14 +842,7 @@ class CourseDetailView extends GetView<HomeController> {
                   margin: const EdgeInsets.only(right: 16),
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        AppColors.primary,
-                        AppColors.primary.withOpacity(0.8),
-                      ],
-                    ),
+                    gradient: AppColors.primaryGradient,
                     borderRadius: BorderRadius.circular(24),
                     boxShadow: [
                       BoxShadow(
@@ -797,6 +917,7 @@ class CourseDetailView extends GetView<HomeController> {
             },
           ),
         ),
+        const SizedBox(height: 24),
       ],
     );
   }
@@ -805,8 +926,9 @@ class CourseDetailView extends GetView<HomeController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 24),
         _buildSectionTitle('Questions fréquentes', FluentIcons.chat_24_filled),
-        const SizedBox(height: 16),
+        const SizedBox(height: 24),
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -817,15 +939,19 @@ class CourseDetailView extends GetView<HomeController> {
             return Container(
               margin: const EdgeInsets.only(bottom: 12),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.cardBackground,
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.05),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
+                    blurRadius: 20,
+                    offset: const Offset(0, 8),
                   ),
                 ],
+                border: Border.all(
+                  color: AppColors.border,
+                  width: 1,
+                ),
               ),
               child: Theme(
                 data: ThemeData(dividerColor: Colors.transparent),
@@ -850,7 +976,7 @@ class CourseDetailView extends GetView<HomeController> {
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black87,
+                      color: AppColors.textPrimary,
                     ),
                   ),
                   children: [
@@ -858,10 +984,10 @@ class CourseDetailView extends GetView<HomeController> {
                       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                       child: Text(
                         qa.answer,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 14,
                           height: 1.6,
-                          color: Colors.grey[700],
+                          color: AppColors.textSecondary,
                         ),
                       ),
                     ),
@@ -871,6 +997,7 @@ class CourseDetailView extends GetView<HomeController> {
             );
           },
         ),
+        const SizedBox(height: 24),
       ],
     );
   }
@@ -900,17 +1027,43 @@ class CourseDetailView extends GetView<HomeController> {
           style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: Colors.black87,
+            color: AppColors.textPrimary,
           ),
         ),
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
-            color: Colors.grey[600],
+            color: AppColors.textSecondary,
           ),
         ),
       ],
     );
+  }
+}
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  final TabBar tabBar;
+
+  _SliverAppBarDelegate(this.tabBar);
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: AppColors.cardBackground,
+      child: tabBar,
+    );
+  }
+
+  @override
+  double get maxExtent => tabBar.preferredSize.height;
+
+  @override
+  double get minExtent => tabBar.preferredSize.height;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
   }
 }
