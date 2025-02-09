@@ -10,6 +10,7 @@ class Course {
   List<Flashcard> flashcards;
   List<QA> qa;
   CourseProgress? progress;
+  int estimatedMinutes; // Ajout du temps estimé par contenu
 
   // Getter pour générer un ID unique basé sur le titre du cours
   String get id =>
@@ -25,6 +26,7 @@ class Course {
     required this.flashcards,
     required this.qa,
     this.progress,
+    this.estimatedMinutes = 15, // Par défaut 15 minutes par contenu
   });
 
   factory Course.fromJson(Map<String, dynamic> json) {
@@ -44,6 +46,7 @@ class Course {
       progress: json["progress"] != null
           ? CourseProgress.fromJson(json["progress"])
           : null,
+      estimatedMinutes: json["estimatedMinutes"] ?? 15,
     );
   }
 
@@ -58,6 +61,7 @@ class Course {
       "flashcards": flashcards.map((f) => f.toJson()).toList(),
       "qa": qa.map((q) => q.toJson()).toList(),
       "progress": progress?.toJson(),
+      "estimatedMinutes": estimatedMinutes,
     };
   }
 

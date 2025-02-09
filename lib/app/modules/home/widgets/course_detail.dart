@@ -753,11 +753,18 @@ class CourseDetailView extends GetView<HomeController> {
                           color: AppColors.border,
                         ),
                         Expanded(
-                          child: _buildQuizStat(
-                            icon: FluentIcons.star_24_regular,
-                            label: 'Points',
-                            value: '100',
-                          ),
+                          child: Obx(() {
+                            final score =
+                                controller.courseProgress.value?.quizScore ?? 0;
+                            return _buildQuizStat(
+                              icon: FluentIcons.star_24_regular,
+                              label: 'Score',
+                              value: '$score%',
+                              color: score >= 50
+                                  ? AppColors.success
+                                  : AppColors.accent,
+                            );
+                          }),
                         ),
                       ],
                     ),
@@ -1006,28 +1013,29 @@ class CourseDetailView extends GetView<HomeController> {
     required IconData icon,
     required String label,
     required String value,
+    Color? color,
   }) {
     return Column(
       children: [
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.1),
+            color: (color ?? AppColors.primary).withOpacity(0.1),
             shape: BoxShape.circle,
           ),
           child: Icon(
             icon,
-            color: AppColors.primary,
+            color: color ?? AppColors.primary,
             size: 24,
           ),
         ),
         const SizedBox(height: 8),
         Text(
           value,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: AppColors.textPrimary,
+            color: color ?? AppColors.textPrimary,
           ),
         ),
         Text(

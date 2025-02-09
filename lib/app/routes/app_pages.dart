@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:lesson/app/modules/onboarding/onboarding_view.dart';
 
 import '../../domain/usecase/sign_in_usecase.dart';
 import '../core/di/service_locator.dart';
@@ -60,13 +61,17 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PROGRESS,
-      page: () => const ProgressView(),
+      page: () => ProgressView(),
       binding: ProgressBinding(),
     ),
     GetPage(
       name: _Paths.DASHBOARD,
       page: () => const DashboardView(),
       binding: DashboardBinding(),
+    ),
+    GetPage(
+      name: _Paths.ONBOARDING,
+      page: () => const OnboardingView(),
     ),
   ];
 }
