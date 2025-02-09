@@ -170,7 +170,7 @@ class _ChapterDetailViewState extends State<ChapterDetailView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Chapitre ${widget.chapterIndex}',
+                      '${"home_chap".tr} ${widget.chapterIndex}',
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey[600],
@@ -367,8 +367,8 @@ class _ChapterDetailViewState extends State<ChapterDetailView> {
                 children: [
                   Text(
                     _currentPage < widget.chapter.content.length - 1
-                        ? 'Suivant'
-                        : 'Terminer',
+                        ? 'btn_next'.tr
+                        : 'btn_finish'.tr,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

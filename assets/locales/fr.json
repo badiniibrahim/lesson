@@ -27,5 +27,119 @@
     "home": "Accueil",
     "progress": "Progression",
     "explore": "Explorer"
+  },
+
+  "onboarding": {
+    "title_1": "Apprenez à votre rythme",
+    "desc_1": "Des cours interactifs adaptés à votre niveau et à votre emploi du temps",
+    "title_2": "Pratiquez activement",
+    "desc_2": "Des quiz et des flashcards pour renforcer vos connaissances",
+    "title_3": "Suivez vos progrès",
+    "desc_3": "Visualisez votre progression et restez motivé"
+  },
+
+  "btn": {
+    "prev": "Précédent",
+    "start": "Commencer",
+    "next": "Suivant",
+    "finish": "Terminer"
+  },
+
+  "home": {
+    "title": "Mes Cours",
+    "helle": "'Bonjour 👋",
+    "message": "Continuez votre apprentissage",
+    "total": "Cours total",
+    "time": "Temps total",
+    "prog": "Progression",
+    "all": "Vos cours",
+    "chapter": "chapitres",
+    "quiz": "questions",
+    "flashcards": "cartes mémoire",
+    "empty_title": "Aucun cours pour le moment",
+    "empty_message": "Commencez votre apprentissage en créant un nouveau cours",
+    "create": "Créer un cours",
+    "new": "'Nouveau cours",
+    "chap": "Chapitre"
+  },
+  "courseDetailView": {
+    "chapter": "Chapitres",
+    "quiz": "Quiz",
+    "flashcards": "Cartes mémoire",
+    "faq": "FAQ",
+    "lessons": "leçons",
+    "completed": "complété",
+    "knowledge": "Testez vos connaissances",
+    "score": "Score",
+    "start_quiz": "Commencer le quiz",
+    "tap_to_see": "Appuyez pour voir la réponse",
+    "frequently": "Questions fréquentes",
+    "carte": "Carte"
+  },
+  "flashcards": {
+    "touch": "Touchez pour retourner",
+    "response": "Réponse",
+    "question": "Question"
+  },
+
+  "generateTopicView": {
+    "title": "Créer un nouveau cours",
+    "message": "Générateur de Cours",
+    "sub_message": "Créez votre parcours d'apprentissage personnalisé",
+    "question": "Que voulez-vous apprendre ?",
+    "sub_question": "Décrivez le sujet que vous souhaitez explorer",
+    "example": "Ex: Je voudrais apprendre React.js, en particulier les hooks et la gestion d'état...",
+    "btn_text": "Générer le topic"
+  },
+
+  "quiz": {
+    "text_1": "Félicitations ! 🎉",
+    "text_2": "Continuez vos efforts ! 💪",
+    "message_1": "Excellent travail ! Vous avez maîtrisé ce quiz.",
+    "message_2": "Vous y êtes presque ! Réessayez pour améliorer votre score.",
+    "leave": "Quitter",
+    "try_again": "Réessayer"
+  },
+
+  "selectTopicWidget": {
+    "title": "Sélection des sujets",
+    "message": "Sélectionnez vos sujets",
+    "sub_message": "Choisissez un ou plusieurs sujets qui vous intéressent",
+    "topic": "sujet",
+    "select": "sélectionné",
+    "generate": "Générer le cours"
+  },
+  "profile": {
+    "title": "Profil",
+    "online": "En ligne",
+    "stat": "Statistiques d'apprentissage",
+    "score": "Score moyen\naux quiz",
+    "chapter": "Chapitres\ncomplétés",
+    "progress": "Progression par cours",
+    "empty": "Aucune donnée disponible",
+    "settings": "Paramètres",
+    "update": "Modifier le profil",
+    "secure": "Sécurité",
+    "notification": "Notifications",
+    "logout": "Déconnexion"
+  },
+  "progress": {
+    "title": "Tableau de progression",
+    "message": "Suivez votre évolution et vos accomplissements",
+    "total": "Progression\ntotale",
+    "end_chapter": "Chapitres\nterminés",
+    "score": "Score moyen\naux quiz",
+    "flashcard": "Flashcards\nmaîtrisées",
+    "state": "Statistiques détaillées",
+    "message_1": "Temps total d'apprentissage",
+    "message_2": "Séquences\ncomplétées",
+    "message_3": "Meilleur score\nau quiz",
+    "message_4": "Jours\nconsécutifs",
+    "heb": "Progression hebdomadaire",
+    "course": "Vos cours en cours",
+    "chapter": "Chapitres",
+    "quiz": "Questionnaire",
+    "flashcards": "Cartes mémoire",
+    "overall_progress": "Progression globale"
   }
 }

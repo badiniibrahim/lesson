@@ -157,7 +157,7 @@ class _FlashcardsViewState extends State<FlashcardsView>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Flashcards',
+                  'courseDetailView_flashcards'.tr,
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey[600],
@@ -232,7 +232,7 @@ class _FlashcardsViewState extends State<FlashcardsView>
                     ? _buildCardFace(
                         flashcard.front,
                         FluentIcons.lightbulb_24_filled,
-                        'Question',
+                        'flashcards_question'.tr,
                         true,
                       )
                     : Transform(
@@ -241,7 +241,7 @@ class _FlashcardsViewState extends State<FlashcardsView>
                         child: _buildCardFace(
                           flashcard.back,
                           FluentIcons.checkmark_circle_24_filled,
-                          'Réponse',
+                          'flashcards_response'.tr,
                           false,
                         ),
                       ),
@@ -336,7 +336,7 @@ class _FlashcardsViewState extends State<FlashcardsView>
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  'Touchez pour retourner',
+                  'flashcards_touch'.tr,
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.7),
                   ),

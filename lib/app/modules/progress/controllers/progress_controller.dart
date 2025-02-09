@@ -22,16 +22,11 @@ class ProgressController extends GetxController {
 
   Future<void> loadProgress() async {
     try {
-      print('Loading courses...');
       courses.value = await _progressService.getAllCourses();
-      print('Loaded ${courses.length} courses');
-
       for (var course in courses) {
-        print('Loading progress for course: ${course.courseTitle}');
         final progress = await _progressService.getCourseProgress(course.id);
         if (progress != null) {
           progressMap[course.id] = progress;
-          print('Progress loaded successfully');
         }
       }
 

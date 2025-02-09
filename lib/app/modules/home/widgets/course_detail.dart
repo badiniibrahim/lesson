@@ -80,22 +80,22 @@ class CourseDetailView extends GetView<HomeController> {
                       fontWeight: FontWeight.w500,
                       fontSize: 14,
                     ),
-                    tabs: const [
+                    tabs: [
                       Tab(
                         icon: Icon(FluentIcons.book_24_filled),
-                        text: 'Chapitres',
+                        text: 'courseDetailView_chapter'.tr,
                       ),
                       Tab(
                         icon: Icon(FluentIcons.quiz_new_24_filled),
-                        text: 'Quiz',
+                        text: 'courseDetailView_quiz'.tr,
                       ),
                       Tab(
                         icon: Icon(FluentIcons.flash_24_filled),
-                        text: 'Flashcards',
+                        text: 'courseDetailView_flashcards'.tr,
                       ),
                       Tab(
                         icon: Icon(FluentIcons.chat_24_filled),
-                        text: 'FAQ',
+                        text: 'courseDetailView_faq'.tr,
                       ),
                     ],
                   ),
@@ -300,7 +300,7 @@ class CourseDetailView extends GetView<HomeController> {
             _buildStatItem(
               FluentIcons.book_24_regular,
               '${course.chapters.length}',
-              'Chapitres',
+              'courseDetailView_chapter'.tr,
             ),
             VerticalDivider(
               color: AppColors.primary.withOpacity(0.2),
@@ -309,7 +309,7 @@ class CourseDetailView extends GetView<HomeController> {
             _buildStatItem(
               FluentIcons.quiz_new_24_regular,
               '${course.quiz.length}',
-              'Quiz',
+              'courseDetailView_quiz'.tr,
             ),
             VerticalDivider(
               color: AppColors.primary.withOpacity(0.2),
@@ -318,7 +318,7 @@ class CourseDetailView extends GetView<HomeController> {
             _buildStatItem(
               FluentIcons.flash_24_regular,
               '${course.flashcards.length}',
-              'Flashcards',
+              'courseDetailView_faq'.tr,
             ),
           ],
         ),
@@ -414,7 +414,8 @@ class CourseDetailView extends GetView<HomeController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 24),
-        _buildSectionTitle('Chapitres', FluentIcons.book_24_filled),
+        _buildSectionTitle(
+            'courseDetailView_chapter'.tr, FluentIcons.book_24_filled),
         const SizedBox(height: 24),
         ListView.builder(
           shrinkWrap: true,
@@ -559,14 +560,14 @@ class CourseDetailView extends GetView<HomeController> {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      '${chapter.content.length} leçons',
+                      '${chapter.content.length} ${'courseDetailView_lessons'.tr}',
                       style: const TextStyle(
                         color: AppColors.textSecondary,
                       ),
                     ),
                     const SizedBox(width: 16),
                     Text(
-                      '${(progress * 100).toInt()}% complété',
+                      '${(progress * 100).toInt()}% ${'courseDetailView_completed'.tr}',
                       style: TextStyle(
                         color:
                             isCompleted ? AppColors.success : AppColors.primary,
@@ -644,7 +645,8 @@ class CourseDetailView extends GetView<HomeController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 24),
-        _buildSectionTitle('Quiz', FluentIcons.quiz_new_24_filled),
+        _buildSectionTitle(
+            'courseDetailView_quiz'.tr, FluentIcons.quiz_new_24_filled),
         const SizedBox(height: 24),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 24),
@@ -696,8 +698,8 @@ class CourseDetailView extends GetView<HomeController> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Testez vos connaissances',
+                          Text(
+                            'courseDetailView_knowledge'.tr,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -715,7 +717,7 @@ class CourseDetailView extends GetView<HomeController> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
-                              '${course.quiz.length} questions',
+                              '${course.quiz.length} ${'home_quiz'.tr}',
                               style: const TextStyle(
                                 color: AppColors.primary,
                                 fontWeight: FontWeight.w600,
@@ -758,7 +760,7 @@ class CourseDetailView extends GetView<HomeController> {
                                 controller.courseProgress.value?.quizScore ?? 0;
                             return _buildQuizStat(
                               icon: FluentIcons.star_24_regular,
-                              label: 'Score',
+                              label: 'courseDetailView_score'.tr,
                               value: '$score%',
                               color: score >= 50
                                   ? AppColors.success
@@ -791,7 +793,7 @@ class CourseDetailView extends GetView<HomeController> {
                             ),
                           ],
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
@@ -801,7 +803,7 @@ class CourseDetailView extends GetView<HomeController> {
                             ),
                             SizedBox(width: 12),
                             Text(
-                              'Commencer le quiz',
+                              'courseDetailView_start_quiz'.tr,
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -828,7 +830,8 @@ class CourseDetailView extends GetView<HomeController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 24),
-        _buildSectionTitle('Flashcards', FluentIcons.flash_24_filled),
+        _buildSectionTitle(
+            'courseDetailView_flashcards'.tr, FluentIcons.flash_24_filled),
         const SizedBox(height: 24),
         SizedBox(
           height: 220,
@@ -881,7 +884,7 @@ class CourseDetailView extends GetView<HomeController> {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              'Carte ${index + 1}',
+                              '${'courseDetailView_carte'.tr} ${index + 1}',
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
@@ -910,7 +913,7 @@ class CourseDetailView extends GetView<HomeController> {
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            'Appuyez pour voir la réponse',
+                            'courseDetailView_tap_to_see'.tr,
                             style: TextStyle(
                               color: Colors.white.withOpacity(0.7),
                             ),
@@ -934,7 +937,8 @@ class CourseDetailView extends GetView<HomeController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 24),
-        _buildSectionTitle('Questions fréquentes', FluentIcons.chat_24_filled),
+        _buildSectionTitle(
+            'courseDetailView_frequently'.tr, FluentIcons.chat_24_filled),
         const SizedBox(height: 24),
         ListView.builder(
           shrinkWrap: true,

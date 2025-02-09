@@ -28,8 +28,8 @@ class SelectTopicWidget extends GetView<HomeController> {
             ),
             onPressed: () => Get.back(),
           ),
-          title: const Text(
-            'Sélection des sujets',
+          title: Text(
+            'selectTopicWidget_title'.tr,
             style: TextStyle(
               fontFamily: 'Gilroy',
               fontSize: 20,
@@ -102,7 +102,7 @@ class SelectTopicWidget extends GetView<HomeController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Sélectionnez vos sujets",
+                  "selectTopicWidget_message".tr,
                   style: TextStyle(
                     fontFamily: 'Gilroy',
                     fontSize: 18,
@@ -112,7 +112,7 @@ class SelectTopicWidget extends GetView<HomeController> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  "Choisissez un ou plusieurs sujets qui vous intéressent",
+                  "selectTopicWidget_sub_message".tr,
                   style: TextStyle(
                     fontFamily: 'Gilroy',
                     fontSize: 14,
@@ -226,7 +226,7 @@ class SelectTopicWidget extends GetView<HomeController> {
                 Obx(() {
                   final count = controller.state.selectedTopics.length;
                   return Text(
-                    "$count sujet${count > 1 ? 's' : ''} sélectionné${count > 1 ? 's' : ''}",
+                    "$count ${'selectTopicWidget_topic'.tr}${count > 1 ? 's' : ''} ${'selectTopicWidget_select'.tr}${count > 1 ? 's' : ''}",
                     style: TextStyle(
                       fontFamily: 'Gilroy',
                       fontSize: 14,
@@ -265,7 +265,7 @@ class SelectTopicWidget extends GetView<HomeController> {
                             ),
                             const SizedBox(width: 12),
                             Text(
-                              'Générer le cours'.tr,
+                              'selectTopicWidget_generate'.tr,
                               style: const TextStyle(
                                 fontFamily: 'Gilroy',
                                 fontSize: 18,
@@ -276,28 +276,7 @@ class SelectTopicWidget extends GetView<HomeController> {
                           ],
                         ),
                 ),
-              ), /*ElevatedButton(
-                onPressed: () {
-                  Get.back(result: controller.state.selectedTopics.toList());
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  elevation: 0,
-                ),
-                child: const Text(
-                  'Continuer',
-                  style: TextStyle(
-                    fontFamily: 'Gilroy',
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),*/
+              ),
             ),
           ],
         ),

@@ -27,5 +27,115 @@
     "home": "Home",
     "progress": "Progress",
     "explore": "Explore"
+  },
+  "onboarding": {
+    "title_1": "Learn at your own pace",
+    "desc_1": "Interactive courses tailored to your level and schedule",
+    "title_2": "Practice actively",
+    "desc_2": "Quizzes and flashcards to reinforce your knowledge",
+    "title_3": "Track your progress",
+    "desc_3": "Visualize your progress and stay motivated"
+  },
+
+  "btn": {
+    "prev": "Previous",
+    "start": "Start",
+    "next": "Next",
+    "finish": "To end"
+  },
+  "home": {
+    "title": "My Courses",
+    "helle": "Hello 👋",
+    "message": "Continue your learning journey",
+    "total": "Total courses",
+    "time": "Total time",
+    "prog": "Progress",
+    "all": "Your courses",
+    "chapter": "chapters",
+    "quiz": "questions",
+    "flashcards": "flashcards",
+    "empty_title": "No courses available",
+    "empty_message": "Start learning by creating a new course",
+    "create": "Create a course",
+    "new": "New course",
+    "chap": "Chapter"
+  },
+  "courseDetailView": {
+    "chapter": "Chapters",
+    "quiz": "Quiz",
+    "flashcards": "Flashcards",
+    "faq": "FAQ",
+    "lessons": "Lessons",
+    "completed": "Completed",
+    "knowledge": "Test your knowledge",
+    "score": "Score",
+    "start_quiz": "Start the quiz",
+    "tap_to_see": "Tap to see the answer",
+    "frequently": "Frequently asked questions",
+    "carte": "Map"
+  },
+  "flashcards": {
+    "touch": "Tap to flip",
+    "response": "Answer",
+    "question": "Question"
+  },
+  "generateTopicView": {
+    "title": "Create a new course",
+    "message": "Course Generator",
+    "sub_message": "Create your personalized learning journey",
+    "question": "What do you want to learn?",
+    "sub_question": "Describe the topic you want to explore",
+    "example": "E.g.: I want to learn React.js, especially hooks and state management...",
+    "btn_text": "Generate the topic"
+  },
+  "quiz": {
+    "text_1": "Congratulations! 🎉",
+    "text_2": "Keep going! 💪",
+    "message_1": "Great job! You have mastered this quiz.",
+    "message_2": "You're almost there! Try again to improve your score.",
+    "leave": "Leave",
+    "try_again": "Try again"
+  },
+
+  "selectTopicWidget": {
+    "title": "Topic Selection",
+    "message": "Select your topics",
+    "sub_message": "Choose one or more topics that interest you",
+    "topic": "topic",
+    "select": "selected",
+    "generate": "Generate the course"
+  },
+  "profile": {
+    "title": "Profile",
+    "online": "Online",
+    "stat": "Learning Statistics",
+    "score": "Average Quiz Score",
+    "chapter": "Completed Chapters",
+    "progress": "Progress by Course",
+    "empty": "No data available",
+    "settings": "Settings",
+    "update": "Edit Profile",
+    "secure": "Security",
+    "notification": "Notifications",
+    "logout": "Log out"
+  },
+  "progress": {
+    "title": "Progress Dashboard",
+    "message": "Track your progress and achievements",
+    "total": "Total Progress",
+    "end_chapter": "Completed Chapters",
+    "score": "Average Quiz Score",
+    "flashcard": "Mastered Flashcards",
+    "state": "Detailed Statistics",
+    "message_1": "Total Learning Time",
+    "message_2": "Completed Sequences",
+    "message_3": "Best Quiz Score",
+    "message_4": "Consecutive Days",
+    "heb": "Weekly Progress",
+    "course": "Your Ongoing Courses",
+    "chapter": "Chapters",
+    "quiz": "Quiz",
+    "flashcards": "Flashcards",
+    "overall_progress": "Overall Progress"
   }
 }

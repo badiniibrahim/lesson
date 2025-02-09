@@ -82,8 +82,8 @@ class HomeView extends GetView<HomeController> {
             ],
           ),
         ),
-        title: const Text(
-          'Mes Cours',
+        title: Text(
+          'home_title'.tr,
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -102,7 +102,7 @@ class HomeView extends GetView<HomeController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Bonjour 👋',
+            'home_helle'.tr,
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
@@ -111,7 +111,7 @@ class HomeView extends GetView<HomeController> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Continuez votre apprentissage',
+            'home_message'.tr,
             style: TextStyle(
               fontSize: 16,
               color: Colors.grey[600],
@@ -152,7 +152,7 @@ class HomeView extends GetView<HomeController> {
               _buildStatItem(
                 FluentIcons.book_24_filled,
                 controller.state.courseList.length.toString(),
-                'Cours total',
+                'home_total'.tr,
               ),
               Container(
                 width: 1,
@@ -162,7 +162,7 @@ class HomeView extends GetView<HomeController> {
               _buildStatItem(
                 FluentIcons.timer_24_filled,
                 '${controller.state.courseList.length * 2}h',
-                'Temps total',
+                'home_time'.tr,
               ),
               Container(
                 width: 1,
@@ -172,7 +172,7 @@ class HomeView extends GetView<HomeController> {
               _buildStatItem(
                 FluentIcons.trophy_24_filled,
                 '${controller.state.courseList.length * 10}%',
-                'Progression',
+                'home_prog'.tr,
               ),
             ],
           ),
@@ -230,8 +230,8 @@ class HomeView extends GetView<HomeController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Vos cours',
+              Text(
+                'home_all'.tr,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -374,19 +374,19 @@ class HomeView extends GetView<HomeController> {
                         children: [
                           _buildCourseMetric(
                             FluentIcons.book_24_filled,
-                            '${course.chapters.length} chapitres',
+                            '${course.chapters.length} ${"home_chapter".tr}',
                             Colors.blue,
                           ),
                           const SizedBox(width: 16),
                           _buildCourseMetric(
                             FluentIcons.quiz_new_24_filled,
-                            '${course.quiz.length} quiz',
+                            '${course.quiz.length} ${"home_quiz".tr}',
                             Colors.orange,
                           ),
                           const SizedBox(width: 16),
                           _buildCourseMetric(
                             FluentIcons.flash_24_filled,
-                            '${course.flashcards.length} flashcards',
+                            '${course.flashcards.length} ${'home_flashcards'.tr}',
                             Colors.purple,
                           ),
                         ],
@@ -463,8 +463,8 @@ class HomeView extends GetView<HomeController> {
             ),
           ),
           const SizedBox(height: 24),
-          const Text(
-            'Aucun cours pour le moment',
+          Text(
+            'home_empty_title'.tr,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -473,7 +473,7 @@ class HomeView extends GetView<HomeController> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Commencez votre apprentissage en créant un nouveau cours',
+            'home_empty_message'.tr,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
@@ -493,8 +493,8 @@ class HomeView extends GetView<HomeController> {
                 borderRadius: BorderRadius.circular(16),
               ),
             ),
-            child: const Text(
-              'Créer un cours',
+            child: Text(
+              'home_create'.tr,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -511,8 +511,8 @@ class HomeView extends GetView<HomeController> {
       onPressed: () => Get.toNamed(Routes.CREATE_COURSE_GENERATE_TOPIC),
       backgroundColor: AppColors.primary,
       icon: const Icon(FluentIcons.add_24_filled),
-      label: const Text(
-        'Nouveau cours',
+      label: Text(
+        'home_new'.tr,
         style: TextStyle(
           fontWeight: FontWeight.bold,
         ),

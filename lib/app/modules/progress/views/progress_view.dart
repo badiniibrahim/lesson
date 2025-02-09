@@ -75,8 +75,8 @@ class ProgressView extends GetView<ProgressController> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Tableau de progression',
+                    Text(
+                      'progress_title'.tr,
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ class ProgressView extends GetView<ProgressController> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Suivez votre évolution et vos accomplissements',
+                      'progress_message'.tr,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white.withOpacity(0.9),
@@ -145,8 +145,8 @@ class ProgressView extends GetView<ProgressController> {
                           color: AppColors.primary,
                         ),
                       ),
-                      const Text(
-                        'Progression\ntotale',
+                      Text(
+                        'progress_total'.tr,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 14,
@@ -173,19 +173,19 @@ class ProgressView extends GetView<ProgressController> {
         _buildMetricItem(
           FluentIcons.book_24_filled,
           controller.completedChapters.toString(),
-          'Chapitres\nterminés',
+          'progress_end_chapter'.tr,
           Colors.blue,
         ),
         _buildMetricItem(
           FluentIcons.quiz_new_24_filled,
           '${controller.totalQuizScore}%',
-          'Score moyen\naux quiz',
+          'progress_score'.tr,
           Colors.orange,
         ),
         _buildMetricItem(
           FluentIcons.flash_24_filled,
           controller.completedFlashcards.toString(),
-          'Flashcards\nmaîtrisées',
+          'progress_flashcard'.tr,
           Colors.purple,
         ),
       ],
@@ -232,8 +232,8 @@ class ProgressView extends GetView<ProgressController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Statistiques détaillées',
+          Text(
+            'progress_state'.tr,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -283,25 +283,25 @@ class ProgressView extends GetView<ProgressController> {
               childAspectRatio: 1.5,
               children: [
                 _buildStatCard(
-                  'Temps total\nd\'apprentissage',
+                  'progress_message_1'.tr,
                   timeStr,
                   FluentIcons.timer_24_filled,
                   Colors.teal,
                 ),
                 _buildStatCard(
-                  'Séquences\ncomplétées',
+                  'progress_message_2'.tr,
                   sequencesStr,
                   FluentIcons.checkmark_circle_24_filled,
                   Colors.green,
                 ),
                 _buildStatCard(
-                  'Meilleur score\nau quiz',
+                  'progress_message_3'.tr,
                   '$bestScore%',
                   FluentIcons.trophy_24_filled,
                   Colors.amber,
                 ),
                 _buildStatCard(
-                  'Jours\nconsécutifs',
+                  'progress_message_4'.tr,
                   '$consecutiveDays',
                   FluentIcons.calendar_24_filled,
                   Colors.red,
@@ -393,8 +393,8 @@ class ProgressView extends GetView<ProgressController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Progression hebdomadaire',
+            Text(
+              'progress_heb'.tr,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -474,8 +474,8 @@ class ProgressView extends GetView<ProgressController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Vos cours en cours',
+          Text(
+            'progress_course'.tr,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -586,7 +586,7 @@ class ProgressView extends GetView<ProgressController> {
                 Row(
                   children: [
                     _buildProgressCircle(
-                      'Chapitres',
+                      'progress_chapter'.tr,
                       stats.completedChapters,
                       stats.totalChapters,
                       Colors.blue,
@@ -594,7 +594,7 @@ class ProgressView extends GetView<ProgressController> {
                     ),
                     const SizedBox(width: 16),
                     _buildProgressCircle(
-                      'Quiz',
+                      'progress_quiz'.tr,
                       stats.quizScore,
                       100,
                       Colors.orange,
@@ -602,7 +602,7 @@ class ProgressView extends GetView<ProgressController> {
                     ),
                     const SizedBox(width: 16),
                     _buildProgressCircle(
-                      'Flashcards',
+                      'progress_flashcards'.tr,
                       stats.completedFlashcards,
                       stats.totalFlashcards,
                       Colors.purple,
@@ -618,7 +618,7 @@ class ProgressView extends GetView<ProgressController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Progression globale',
+                          'progress_overall_progress'.tr,
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,

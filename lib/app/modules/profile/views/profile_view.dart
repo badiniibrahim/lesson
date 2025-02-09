@@ -60,8 +60,8 @@ class ProfileView extends GetView<ProgressController> {
             ),
           ],
         ),
-        title: const Text(
-          'Profil',
+        title: Text(
+          'profile_title'.tr,
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -140,7 +140,7 @@ class ProfileView extends GetView<ProgressController> {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    'En ligne',
+                    'profile_online'.tr,
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -163,7 +163,7 @@ class ProfileView extends GetView<ProgressController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Statistiques d\'apprentissage',
+            'profile_stat'.tr,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -186,10 +186,10 @@ class ProfileView extends GetView<ProgressController> {
             ),
             child: Obx(() {
               // Calculer le temps total d'apprentissage (estimé à 30 minutes par chapitre complété)
-              final totalLearningTime = controller.completedChapters.value * 30;
+              /*final totalLearningTime = controller.completedChapters.value * 30;
               final hours = totalLearningTime ~/ 60;
               final minutes = totalLearningTime % 60;
-              final learningTimeStr = '${hours}h ${minutes}m';
+              final learningTimeStr = '${hours}h ${minutes}m';*/
 
               return Column(
                 children: [
@@ -197,38 +197,16 @@ class ProfileView extends GetView<ProgressController> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       _buildStatItem(
-                        FluentIcons.timer_24_filled,
-                        learningTimeStr,
-                        'Temps total\nd\'apprentissage',
-                        Colors.blue,
-                      ),
-                      _buildStatDivider(),
-                      _buildStatItem(
-                        FluentIcons.calendar_24_filled,
-                        '${controller.courses.length}',
-                        'Cours\ntotal',
-                        Colors.orange,
-                      ),
-                    ],
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Divider(),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      _buildStatItem(
                         FluentIcons.trophy_24_filled,
                         '${controller.totalQuizScore}%',
-                        'Score moyen\naux quiz',
+                        'profile_score'.tr,
                         Colors.amber,
                       ),
                       _buildStatDivider(),
                       _buildStatItem(
                         FluentIcons.checkmark_circle_24_filled,
                         '${controller.completedChapters}',
-                        'Chapitres\ncomplétés',
+                        'profile_chapter'.tr,
                         Colors.green,
                       ),
                     ],
@@ -295,7 +273,7 @@ class ProfileView extends GetView<ProgressController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Progression par cours',
+            'profile_progress'.tr,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -322,7 +300,7 @@ class ProfileView extends GetView<ProgressController> {
               if (progressList.isEmpty) {
                 return Center(
                   child: Text(
-                    'Aucune donnée disponible',
+                    'profile_empty'.tr,
                     style: TextStyle(
                       color: Colors.grey[600],
                       fontSize: 14,
@@ -425,7 +403,7 @@ class ProfileView extends GetView<ProgressController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Paramètres',
+            'profile_settings'.tr,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -449,25 +427,25 @@ class ProfileView extends GetView<ProgressController> {
               children: [
                 _buildSettingsItem(
                   FluentIcons.person_24_filled,
-                  'Modifier le profil',
+                  'profile_update'.tr,
                   Colors.blue,
                 ),
                 _buildSettingsDivider(),
                 _buildSettingsItem(
                   FluentIcons.lock_closed_24_filled,
-                  'Sécurité',
+                  'profile_secure'.tr,
                   Colors.green,
                 ),
                 _buildSettingsDivider(),
                 _buildSettingsItem(
                   FluentIcons.alert_24_filled,
-                  'Notifications',
+                  'profile_notification'.tr,
                   Colors.orange,
                 ),
                 _buildSettingsDivider(),
                 _buildSettingsItem(
                   FluentIcons.sign_out_24_filled,
-                  'Déconnexion',
+                  'profile_logout'.tr,
                   Colors.red,
                 ),
               ],

@@ -21,7 +21,7 @@ class _QuizViewState extends State<QuizView>
     with SingleTickerProviderStateMixin {
   late PageController _pageController;
   late AnimationController _animationController;
-  late Animation<double> _animation;
+  late Animation<double> animation;
   late HomeController _courseController;
 
   int _currentQuestionIndex = 0;
@@ -41,7 +41,7 @@ class _QuizViewState extends State<QuizView>
       vsync: this,
     );
 
-    _animation = CurvedAnimation(
+    animation = CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOut,
     );
@@ -144,7 +144,7 @@ class _QuizViewState extends State<QuizView>
 
               // Titre
               Text(
-                isPassed ? 'Félicitations ! 🎉' : 'Continuez vos efforts ! 💪',
+                isPassed ? 'quiz_text_1'.tr : 'quiz_text_2'.tr,
                 style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -196,9 +196,7 @@ class _QuizViewState extends State<QuizView>
 
               // Message de motivation
               Text(
-                isPassed
-                    ? 'Excellent travail ! Vous avez maîtrisé ce quiz.'
-                    : 'Vous y êtes presque ! Réessayez pour améliorer votre score.',
+                isPassed ? 'quiz_message_1'.tr : 'quiz_message_2'.tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
@@ -224,7 +222,7 @@ class _QuizViewState extends State<QuizView>
                         ),
                       ),
                       child: Text(
-                        'Quitter',
+                        'quiz_leave'.tr,
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.grey[700],
@@ -262,8 +260,8 @@ class _QuizViewState extends State<QuizView>
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: const Text(
-                        'Réessayer',
+                      child: Text(
+                        'quiz_try_again'.tr,
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -349,7 +347,7 @@ class _QuizViewState extends State<QuizView>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Quiz',
+                      'courseDetailView_quiz'.tr,
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey[600],
@@ -445,7 +443,7 @@ class _QuizViewState extends State<QuizView>
                     const SizedBox(width: 16),
                     Expanded(
                       child: Text(
-                        'Question ${_currentQuestionIndex + 1}',
+                        '${'flashcards_question'.tr} ${_currentQuestionIndex + 1}',
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

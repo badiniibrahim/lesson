@@ -21,8 +21,8 @@ class GenerateTopicView extends GetView<HomeController> {
           ),
           onPressed: () => Get.back(),
         ),
-        title: const Text(
-          'Créer un nouveau cours',
+        title: Text(
+          'generateTopicView_title'.tr,
           style: TextStyle(
             fontFamily: 'Gilroy',
             fontSize: 20,
@@ -88,8 +88,8 @@ class GenerateTopicView extends GetView<HomeController> {
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
-              "Générateur de Cours",
+            Text(
+              "generateTopicView_message".tr,
               style: TextStyle(
                 fontFamily: 'Gilroy',
                 fontSize: 28,
@@ -98,8 +98,8 @@ class GenerateTopicView extends GetView<HomeController> {
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              "Créez votre parcours d'apprentissage personnalisé",
+            Text(
+              "generateTopicView_sub_message".tr,
               style: TextStyle(
                 fontFamily: 'Gilroy',
                 fontSize: 16,
@@ -144,12 +144,12 @@ class GenerateTopicView extends GetView<HomeController> {
                 ),
               ),
               const SizedBox(width: 16),
-              const Expanded(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Que voulez-vous apprendre ?",
+                      "generateTopicView_question".tr,
                       style: TextStyle(
                         fontFamily: 'Gilroy',
                         fontSize: 20,
@@ -159,7 +159,7 @@ class GenerateTopicView extends GetView<HomeController> {
                     ),
                     SizedBox(height: 4),
                     Text(
-                      "Décrivez le sujet que vous souhaitez explorer",
+                      "generateTopicView_sub_question".tr,
                       style: TextStyle(
                         fontFamily: 'Gilroy',
                         fontSize: 14,
@@ -190,8 +190,7 @@ class GenerateTopicView extends GetView<HomeController> {
                 color: Colors.black87,
               ),
               decoration: InputDecoration(
-                hintText:
-                    "Ex: Je voudrais apprendre React.js, en particulier les hooks et la gestion d'état...",
+                hintText: "generateTopicView_example".tr,
                 hintStyle: TextStyle(
                   fontFamily: 'Gilroy',
                   fontSize: 16,
@@ -263,7 +262,7 @@ class GenerateTopicView extends GetView<HomeController> {
                     ),
                     const SizedBox(width: 12),
                     Text(
-                      'Générer le topic'.tr,
+                      'generateTopicView_btn_text'.tr,
                       style: const TextStyle(
                         fontFamily: 'Gilroy',
                         fontSize: 18,

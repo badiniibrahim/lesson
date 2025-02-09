@@ -18,26 +18,24 @@ class _OnboardingViewState extends State<OnboardingView> {
     OnboardingPage(
       image:
           'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070',
-      title: 'Apprenez à votre rythme',
-      description:
-          'Des cours interactifs adaptés à votre niveau et à votre emploi du temps',
+      title: 'onboarding_title_1'.tr,
+      description: 'onboarding_desc_1'.tr,
       icon: FluentIcons.book_24_filled,
       color: const Color(0xFF4CAF50),
     ),
     OnboardingPage(
       image:
           'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071',
-      title: 'Pratiquez activement',
-      description:
-          'Des quiz et des flashcards pour renforcer vos connaissances',
+      title: 'onboarding_title_2'.tr,
+      description: 'onboarding_desc_2'.tr,
       icon: FluentIcons.brain_circuit_24_filled,
       color: const Color(0xFF2196F3),
     ),
     OnboardingPage(
       image:
           'https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2070',
-      title: 'Suivez vos progrès',
-      description: 'Visualisez votre progression et restez motivé',
+      title: 'onboarding_title_3'.tr,
+      description: 'onboarding_desc_3'.tr,
       icon: FluentIcons.chart_multiple_24_filled,
       color: const Color(0xFFFF9800),
     ),
@@ -102,7 +100,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                       children: [
                         if (_currentPage > 0)
                           _buildNavigationButton(
-                            'Précédent',
+                            'btn_prev'.tr,
                             FluentIcons.arrow_left_24_filled,
                             () {
                               _pageController.previousPage(
@@ -116,8 +114,8 @@ class _OnboardingViewState extends State<OnboardingView> {
                           const SizedBox(width: 120),
                         _buildNavigationButton(
                           _currentPage == _pages.length - 1
-                              ? 'Commencer'
-                              : 'Suivant',
+                              ? 'btn_start'.tr
+                              : 'btn_next'.tr,
                           _currentPage == _pages.length - 1
                               ? FluentIcons.rocket_24_filled
                               : FluentIcons.arrow_right_24_filled,
