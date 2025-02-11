@@ -439,8 +439,8 @@ class CourseDetailView extends GetView<HomeController> {
       return Container(
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
-          color: AppColors.cardBackground,
-          borderRadius: BorderRadius.circular(20),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.05),
@@ -453,51 +453,156 @@ class CourseDetailView extends GetView<HomeController> {
           data: ThemeData(dividerColor: Colors.transparent),
           child: ExpansionTile(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(24),
             ),
+            collapsedShape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
+            ),
+            backgroundColor: Colors.grey[50],
+            collapsedBackgroundColor: Colors.white,
             tilePadding: const EdgeInsets.all(20),
-            leading: Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: isCompleted
-                      ? [
-                          AppColors.success,
-                          AppColors.success.withOpacity(0.8),
-                        ]
-                      : [
-                          AppColors.primary,
-                          AppColors.primary.withOpacity(0.8),
-                        ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    color: isCompleted
-                        ? AppColors.success.withOpacity(0.3)
-                        : AppColors.primary.withOpacity(0.3),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Center(
-                child: isCompleted
-                    ? const Icon(
-                        FluentIcons.checkmark_24_filled,
-                        color: Colors.white,
-                        size: 24,
-                      )
-                    : Text(
-                        index.toString(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+            childrenPadding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+            leading: Stack(
+              children: [
+                Container(
+                  width: 56,
+                  height: 56,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: isCompleted
+                          ? [
+                              Colors.green.shade400,
+                              Colors.green.shade600,
+                            ]
+                          : [
+                              AppColors.primary,
+                              AppColors.primary.withOpacity(0.8),
+                            ],
+                    ),
+                    borderRadius: BorderRadius.circular(18),
+                    boxShadow: [
+                      BoxShadow(
+                        color: (isCompleted ? Colors.green : AppColors.primary)
+                            .withOpacity(0.3),
+                        blurRadius: 12,
+                        offset: const Offset(0, 6),
                       ),
-              ),
+                    ],
+                  ),
+                  child: Center(
+                    child: isCompleted
+                        ? const Icon(
+                            FluentIcons.checkmark_24_filled,
+                            color: Colors.white,
+                            size: 28,
+                          )
+                        : Text(
+                            index.toString(),
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                  ),
+                ),
+                if (!isCompleted && progress > 0)
+                  Positioned.fill(
+                    child: CircularProgressIndicator(
+                      value: progress,
+                      backgroundColor: Colors.transparent,
+                      valueColor:
+                          const AlwaysStoppedAnimation<Color>(Colors.white),
+                      strokeWidth: 3,
+                    ),
+                  ),
+              ],
+            ),
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  chapter.chapterName,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[100],
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            FluentIcons.book_24_regular,
+                            size: 14,
+                            color: Colors.grey[600],
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            '${chapter.content.length} leçons',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: (isCompleted ? Colors.green : AppColors.primary)
+                            .withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            isCompleted
+                                ? FluentIcons.checkmark_24_filled
+                                : FluentIcons.timer_24_regular,
+                            size: 14,
+                            color:
+                                isCompleted ? Colors.green : AppColors.primary,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            isCompleted
+                                ? 'Terminé'
+                                : '${(progress * 100).toInt()}% complété',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: isCompleted
+                                  ? Colors.green
+                                  : AppColors.primary,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
             trailing: GestureDetector(
               onTap: () => Get.to(
@@ -511,22 +616,26 @@ class CourseDetailView extends GetView<HomeController> {
               child: Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  gradient: isCompleted
-                      ? LinearGradient(
-                          colors: [
-                            AppColors.success,
-                            AppColors.success.withOpacity(0.8),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: isCompleted
+                        ? [
+                            Colors.green.shade400,
+                            Colors.green.shade600,
+                          ]
+                        : [
+                            AppColors.primary,
+                            AppColors.primary.withOpacity(0.8),
                           ],
-                        )
-                      : AppColors.primaryGradient,
-                  borderRadius: BorderRadius.circular(15),
+                  ),
+                  borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: isCompleted
-                          ? AppColors.success.withOpacity(0.3)
-                          : AppColors.primary.withOpacity(0.3),
+                      color: (isCompleted ? Colors.green : AppColors.primary)
+                          .withOpacity(0.3),
                       blurRadius: 12,
-                      offset: const Offset(0, 4),
+                      offset: const Offset(0, 6),
                     ),
                   ],
                 ),
@@ -539,60 +648,10 @@ class CourseDetailView extends GetView<HomeController> {
                 ),
               ),
             ),
-            title: Text(
-              chapter.chapterName,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: AppColors.textPrimary,
-              ),
-            ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Icon(
-                      FluentIcons.book_24_regular,
-                      size: 16,
-                      color: AppColors.textSecondary,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      '${chapter.content.length} ${'courseDetailView_lessons'.tr}',
-                      style: const TextStyle(
-                        color: AppColors.textSecondary,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Text(
-                      '${(progress * 100).toInt()}% ${'courseDetailView_completed'.tr}',
-                      style: TextStyle(
-                        color:
-                            isCompleted ? AppColors.success : AppColors.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(2),
-                  child: LinearProgressIndicator(
-                    value: progress,
-                    backgroundColor: AppColors.border,
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      isCompleted ? AppColors.success : AppColors.primary,
-                    ),
-                    minHeight: 4,
-                  ),
-                ),
-              ],
-            ),
-            children: chapter.content.map((content) {
-              return _buildContentItem(content);
-            }).toList(),
+            children: [
+              const SizedBox(height: 16),
+              ...chapter.content.map((content) => _buildContentItem(content)),
+            ],
           ),
         ),
       );
@@ -601,40 +660,92 @@ class CourseDetailView extends GetView<HomeController> {
 
   Widget _buildContentItem(Content content) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+      margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.background,
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(
-          color: AppColors.border,
-          width: 1,
-        ),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: AppColors.primary.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(14),
             ),
             child: Icon(
-              FluentIcons.document_24_regular,
+              content.isCompleted
+                  ? FluentIcons.checkmark_circle_24_filled
+                  : FluentIcons.document_24_regular,
               size: 20,
-              color: AppColors.primary,
+              color: content.isCompleted ? Colors.green : AppColors.primary,
             ),
           ),
           const SizedBox(width: 16),
           Expanded(
-            child: Text(
-              content.topic,
-              style: const TextStyle(
-                fontSize: 14,
-                color: AppColors.textPrimary,
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  content.topic,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    Icon(
+                      FluentIcons.timer_24_regular,
+                      size: 14,
+                      color: Colors.grey[600],
+                    ),
+                    const SizedBox(width: 6),
+                  ],
+                ),
+              ],
             ),
           ),
+          if (content.isCompleted)
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 4,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.green.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    FluentIcons.checkmark_24_filled,
+                    size: 14,
+                    color: Colors.green,
+                  ),
+                  SizedBox(width: 4),
+                  Text(
+                    'Terminé',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.green,
+                    ),
+                  ),
+                ],
+              ),
+            ),
         ],
       ),
     );

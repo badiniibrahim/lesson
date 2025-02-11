@@ -7,7 +7,7 @@ abstract class Routes {
     final bool hasValidSession = await getIt<SingInUseCase>().hasSessionValid();
 
     if (hasValidSession) {
-      return Routes.SIGN_IN;
+      return Routes.DASHBOARD;
     } else {
       return Routes.SIGN_IN;
     }

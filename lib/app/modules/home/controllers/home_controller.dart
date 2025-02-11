@@ -15,6 +15,8 @@ class HomeController extends GetxController {
   final RxDouble overallProgress = 0.0.obs;
   final RxMap<String, double> chaptersProgress = <String, double>{}.obs;
   final RxMap<String, int> quizScores = <String, int>{}.obs;
+  final RxMap<String, CourseProgress> courseProgressMap =
+      <String, CourseProgress>{}.obs;
 
   HomeController({required this.generateTopicUsecase});
 
@@ -122,6 +124,24 @@ class HomeController extends GetxController {
     final score = quizScores[courseId] ?? 0;
     // Convertir le score en progression (0.0 à 1.0)
     return score / 100;
+  }
+
+  double getOverallProgress() {
+    if (courseProgressMap.isEmpty) return 0.0;
+
+    double totalProgress = 0.0;
+    int totalChapters = 0;
+
+    for (var progress in courseProgressMap.values) {
+      if (progress.chaptersProgress.isNotEmpty) {
+        for (var chapterProgress in progress.chaptersProgress.values) {
+          totalProgress += chapterProgress;
+          totalChapters++;
+        }
+      }
+    }
+
+    return totalChapters > 0 ? totalProgress / totalChapters : 0.0;
   }
 
   @override

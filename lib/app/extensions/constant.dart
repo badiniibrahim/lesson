@@ -162,13 +162,6 @@ final topicHistory = [
   ]),
   Content.model([
     TextPart(
-        '```json\n[\n  "Python Fundamentals: A Beginner\'s Journey",\n  "Data Structures in Python: Lists, Dictionaries, and More",\n  "Object-Oriented Programming with Python: Concepts and Applications",\n  "Python for Data Analysis: Introduction to Pandas",\n  "Web Development with Python: Building a Simple Web App",\n  "Automating Tasks with Python: Scripting and Automation",\n  "Python Algorithms: Problem Solving and Optimization"\n]\n```'),
-  ]),
-  Content.multi([
-    TextPart('Add array title'),
-  ]),
-  Content.model([
-    TextPart(
         '```json\n{\n  "course_titles": [\n    "Python Fundamentals: A Beginner\'s Journey",\n    "Data Structures in Python: Lists, Dictionaries, and More",\n    "Object-Oriented Programming with Python: Concepts and Applications",\n    "Python for Data Analysis: Introduction to Pandas",\n    "Web Development with Python: Building a Simple Web App",\n    "Automating Tasks with Python: Scripting and Automation",\n    "Python Algorithms: Problem Solving and Optimization"\n  ]\n}\n```'),
   ]),
 ];
