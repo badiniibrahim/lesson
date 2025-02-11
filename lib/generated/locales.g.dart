@@ -21,6 +21,8 @@ class LocaleKeys {
   static const singIn_user_not_found = 'singIn_user_not_found';
   static const singIn_wrong_password = 'singIn_wrong_password';
   static const singIn_or = 'singIn_or';
+  static const singIn_message = 'singIn_message';
+  static const singIn_connect_message = 'singIn_connect_message';
   static const sign_up_email = 'sign_up_email';
   static const sign_up_password = 'sign_up_password';
   static const sign_up_full_name = 'sign_up_full_name';
@@ -30,6 +32,8 @@ class LocaleKeys {
   static const sign_up_sign_up = 'sign_up_sign_up';
   static const sign_up_auth_verification_email_sent =
       'sign_up_auth_verification_email_sent';
+  static const sign_up_message = 'sign_up_message';
+  static const sign_up_connect_message = 'sign_up_connect_message';
   static const dashboard_profile = 'dashboard_profile';
   static const dashboard_home = 'dashboard_home';
   static const dashboard_progress = 'dashboard_progress';
@@ -137,6 +141,8 @@ class Locales {
     'singIn_user_not_found': 'No user found for that email.',
     'singIn_wrong_password': 'Wrong password provided for that user.',
     'singIn_or': 'Or continue with',
+    'singIn_message': 'Welcome',
+    'singIn_connect_message': 'Log in to continue your learning',
     'sign_up_email': 'Email',
     'sign_up_password': 'Password',
     'sign_up_full_name': 'Full name',
@@ -146,6 +152,8 @@ class Locales {
     'sign_up_sign_up': 'Sign In',
     'sign_up_auth_verification_email_sent':
         'A verification email has been sent to you. Please check your inbox and follow the instructions.',
+    'sign_up_message': 'Welcome',
+    'sign_up_connect_message': 'Log in to continue your learning',
     'dashboard_profile': 'Profile',
     'dashboard_home': 'Home',
     'dashboard_progress': 'Progress',
@@ -228,13 +236,13 @@ class Locales {
     'progress_title': 'Progress Dashboard',
     'progress_message': 'Track your progress and achievements',
     'progress_total': 'Total Progress',
-    'progress_end_chapter': 'Completed Chapters',
+    'progress_end_chapter': 'Completed\nChapters',
     'progress_score': 'Average Quiz Score',
-    'progress_flashcard': 'Mastered Flashcards',
+    'progress_flashcard': 'Mastered\nFlashcards',
     'progress_state': 'Detailed Statistics',
     'progress_message_1': 'Total Learning Time',
     'progress_message_2': 'Completed Sequences',
-    'progress_message_3': 'Best Quiz Score',
+    'progress_message_3': 'Best Quiz\nScore',
     'progress_message_4': 'Consecutive Days',
     'progress_heb': 'Weekly Progress',
     'progress_course': 'Your Ongoing Courses',
@@ -255,6 +263,9 @@ class Locales {
     'singIn_wrong_password':
         'Mot de passe incorrect fourni pour cet utilisateur.',
     'singIn_or': 'Ou continuez avec',
+    'singIn_message': 'Bienvenue',
+    'singIn_connect_message':
+        'Connectez-vous pour continuer votre apprentissage',
     'sign_up_email': 'E-mail',
     'sign_up_password': 'Mot de passe',
     'sign_up_full_name': 'Nom complet',
@@ -264,6 +275,8 @@ class Locales {
     'sign_up_sign_up': 'S\'inscrire',
     'sign_up_auth_verification_email_sent':
         'Un e-mail de vérification vous a été envoyé. Veuillez vérifier votre boîte de réception et suivre les instructions.',
+    'sign_up_message': 'Créer un compte',
+    'sign_up_connect_message': 'Rejoignez notre communauté d \'apprenants',
     'dashboard_profile': 'Profil',
     'dashboard_home': 'Accueil',
     'dashboard_progress': 'Progression',

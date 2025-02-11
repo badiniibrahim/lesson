@@ -9,7 +9,9 @@
     "verification_text": "Veuillez valider votre email",
     "user_not_found": "Aucun utilisateur trouvé pour cet e-mail.",
     "wrong_password": "Mot de passe incorrect fourni pour cet utilisateur.",
-    "or": "Ou continuez avec"
+    "or": "Ou continuez avec",
+    "message": "Bienvenue",
+    "connect_message": "Connectez-vous pour continuer votre apprentissage"
   },
   "sign_up": {
     "email": "E-mail",
@@ -19,7 +21,9 @@
     "btn_text": "Créer un compte",
     "already_account": "Vous avez déjà un compte ? ",
     "sign_up": "S'inscrire",
-    "auth_verification_email_sent": "Un e-mail de vérification vous a été envoyé. Veuillez vérifier votre boîte de réception et suivre les instructions."
+    "auth_verification_email_sent": "Un e-mail de vérification vous a été envoyé. Veuillez vérifier votre boîte de réception et suivre les instructions.",
+    "message": "Créer un compte",
+    "connect_message": "Rejoignez notre communauté d 'apprenants"
   },
 
   "dashboard": {

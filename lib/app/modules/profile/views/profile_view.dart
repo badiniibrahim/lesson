@@ -80,6 +80,7 @@ class ProfileView extends GetView<ProgressController> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
+            const SizedBox(height: 60),
             Container(
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
@@ -93,15 +94,7 @@ class ProfileView extends GetView<ProgressController> {
                   ),
                 ],
               ),
-              child: CircleAvatar(
-                radius: 50,
-                backgroundColor: AppColors.primary.withOpacity(0.1),
-                child: Icon(
-                  FluentIcons.person_32_filled,
-                  size: 50,
-                  color: AppColors.primary,
-                ),
-              ),
+              child: SizedBox(),
             ),
             const SizedBox(height: 16),
             const Text(

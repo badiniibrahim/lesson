@@ -30,7 +30,7 @@ class ProgressView extends GetView<ProgressController> {
                 children: [
                   _buildOverallProgress(),
                   _buildStatisticsSection(),
-                  _buildProgressChart(),
+                  // _buildProgressChart(),
                   _buildCoursesList(),
                 ],
               ),
@@ -282,12 +282,12 @@ class ProgressView extends GetView<ProgressController> {
               crossAxisSpacing: 16,
               childAspectRatio: 1.5,
               children: [
-                _buildStatCard(
+                /* _buildStatCard(
                   'progress_message_1'.tr,
                   timeStr,
                   FluentIcons.timer_24_filled,
                   Colors.teal,
-                ),
+                ),*/
                 _buildStatCard(
                   'progress_message_2'.tr,
                   sequencesStr,
@@ -300,12 +300,12 @@ class ProgressView extends GetView<ProgressController> {
                   FluentIcons.trophy_24_filled,
                   Colors.amber,
                 ),
-                _buildStatCard(
+                /* _buildStatCard(
                   'progress_message_4'.tr,
                   '$consecutiveDays',
                   FluentIcons.calendar_24_filled,
                   Colors.red,
-                ),
+                ),*/
               ],
             );
           }),

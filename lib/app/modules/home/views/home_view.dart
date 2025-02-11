@@ -10,11 +10,10 @@ import 'package:lesson/domain/usecase/generate_usecase.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  HomeView({super.key});
-
-  @override
-  final controller = Get.put(
-      HomeController(generateTopicUsecase: getIt<GenerateTopicUsecase>()));
+  HomeView({super.key}) {
+    Get.put(
+        HomeController(generateTopicUsecase: getIt<GenerateTopicUsecase>()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +32,12 @@ class HomeView extends GetView<HomeController> {
           return CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
-              _buildSliverAppBar(),
+              _buildAppBar(),
               SliverToBoxAdapter(
                 child: Column(
                   children: [
-                    _buildWelcomeSection(),
-                    _buildQuickStats(),
+                    _buildWelcomeCard(),
+                    _buildQuickActions(),
                     _buildCourseSection(),
                   ],
                 ),
@@ -47,82 +46,52 @@ class HomeView extends GetView<HomeController> {
           );
         },
       ),
-      floatingActionButton: _buildFloatingActionButton(),
     );
   }
 
-  Widget _buildSliverAppBar() {
+  Widget _buildAppBar() {
     return SliverAppBar(
-      expandedHeight: 120,
+      expandedHeight: 0,
       floating: true,
       pinned: true,
       elevation: 0,
-      backgroundColor: Colors.transparent,
-      flexibleSpace: FlexibleSpaceBar(
-        background: Container(
+      backgroundColor: Colors.white,
+      leading: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Container(
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                AppColors.primary,
-                AppColors.primary.withOpacity(0.8),
-              ],
+            color: AppColors.primary.withOpacity(0.1),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(
+            FluentIcons.book_24_filled,
+            color: AppColors.primary,
+            size: 20,
+          ),
+        ),
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.grey[100],
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              FluentIcons.person_24_regular,
+              color: Colors.black87,
+              size: 20,
             ),
           ),
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: CustomPaint(
-                  painter: CirclePatternPainter(
-                    color: Colors.white.withOpacity(0.1),
-                  ),
-                ),
-              ),
-            ],
-          ),
         ),
-        title: Text(
-          'home_title'.tr,
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-      ),
+      ],
     );
   }
 
-  Widget _buildWelcomeSection() {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'home_helle'.tr,
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey[800],
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'home_message'.tr,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey[600],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildQuickStats() {
+  Widget _buildWelcomeCard() {
     return Container(
       margin: const EdgeInsets.all(20),
       padding: const EdgeInsets.all(24),
@@ -145,75 +114,200 @@ class HomeView extends GetView<HomeController> {
         ],
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildStatItem(
-                FluentIcons.book_24_filled,
-                controller.state.courseList.length.toString(),
-                'home_total'.tr,
-              ),
               Container(
-                width: 1,
-                height: 40,
-                color: Colors.white.withOpacity(0.2),
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: const Icon(
+                  FluentIcons.hat_graduation_24_filled,
+                  color: Colors.white,
+                  size: 24,
+                ),
               ),
-              _buildStatItem(
-                FluentIcons.timer_24_filled,
-                '${controller.state.courseList.length * 2}h',
-                'home_time'.tr,
-              ),
+              const Spacer(),
               Container(
-                width: 1,
-                height: 40,
-                color: Colors.white.withOpacity(0.2),
-              ),
-              _buildStatItem(
-                FluentIcons.trophy_24_filled,
-                '${controller.state.courseList.length * 10}%',
-                'home_prog'.tr,
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(
+                      FluentIcons.trophy_24_filled,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      '${controller.state.courseList.length} cours',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
+          ),
+          const SizedBox(height: 24),
+          Text(
+            'home_helle'.tr,
+            style: const TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'home_message'.tr,
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.white.withOpacity(0.9),
+            ),
+          ),
+          const SizedBox(height: 24),
+          _buildProgressBar(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProgressBar() {
+    final progress = controller.state.courseList.isEmpty
+        ? 0.0
+        : controller.state.courseList.length / 10.0;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Progression globale',
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.9),
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            Text(
+              '${(progress * 100).toInt()}%',
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Container(
+          height: 8,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: FractionallySizedBox(
+            widthFactor: progress,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildQuickActions() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        children: [
+          _buildActionCard(
+            'Nouveau\ncours',
+            FluentIcons.add_24_filled,
+            Colors.blue,
+            () => Get.toNamed(Routes.CREATE_COURSE_GENERATE_TOPIC),
+          ),
+          const SizedBox(width: 16),
+          _buildActionCard(
+            'Mes\nprogrès',
+            FluentIcons.chart_multiple_24_filled,
+            Colors.orange,
+            () {},
+          ),
+          const SizedBox(width: 16),
+          _buildActionCard(
+            'Mes\nfavoris',
+            FluentIcons.bookmark_24_filled,
+            Colors.purple,
+            () {},
           ),
         ],
       ),
     );
   }
 
-  Widget _buildStatItem(IconData icon, String value, String label) {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(12),
+  Widget _buildActionCard(
+    String title,
+    IconData icon,
+    Color color,
+    VoidCallback onTap,
+  ) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.2),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Icon(
-            icon,
             color: Colors.white,
-            size: 24,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                blurRadius: 10,
+                offset: const Offset(0, 5),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(
+                  icon,
+                  color: color,
+                  size: 20,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  height: 1.2,
+                ),
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: 12),
-        Text(
-          value,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.white.withOpacity(0.8),
-          ),
-        ),
-      ],
+      ),
     );
   }
 
@@ -232,35 +326,27 @@ class HomeView extends GetView<HomeController> {
             children: [
               Text(
                 'home_all'.tr,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.black87,
                 ),
               ),
-              TextButton(
-                onPressed: () {
-                  // Implémenter la vue de tous les cours
-                },
-                child: Text(
-                  'Voir tout',
-                  style: TextStyle(
-                    color: AppColors.primary,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+              TextButton.icon(
+                onPressed: () {},
+                icon: const Icon(FluentIcons.arrow_sort_24_regular),
+                label: const Text('Trier'),
               ),
             ],
           ),
           const SizedBox(height: 16),
-          ListView.separated(
+          ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.state.courseList.length,
-            separatorBuilder: (context, index) => const SizedBox(height: 16),
             itemBuilder: (context, index) {
               final course = controller.state.courseList[index];
-              return _buildModernCourseCard(course);
+              return _buildCourseCard(course);
             },
           ),
         ],
@@ -268,9 +354,20 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _buildModernCourseCard(Course course) {
-    return Hero(
-      tag: 'course-${course.id}',
+  Widget _buildCourseCard(Course course) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
@@ -279,123 +376,85 @@ class HomeView extends GetView<HomeController> {
             transition: Transition.fadeIn,
           ),
           borderRadius: BorderRadius.circular(24),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(24),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 20,
-                  offset: const Offset(0, 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(24),
                 ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 160,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(24),
-                    ),
-                    image: DecorationImage(
-                      image: NetworkImage(course.bannerImage),
-                      fit: BoxFit.cover,
-                    ),
+                child: AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: Image.network(
+                    "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDE5MTZ8MHwxfHNlYXJjaHwxfHxwYXJpc3xlbnwwfHx8fDE3Mzg3NzExNTV8MA&ixlib=rb-4.0.3&q=80&w=1080",
+                    //course.bannerImage,
+                    fit: BoxFit.cover,
                   ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.vertical(
-                        top: Radius.circular(24),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
                       ),
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.transparent,
-                          Colors.black.withOpacity(0.7),
-                        ],
+                      decoration: BoxDecoration(
+                        color: AppColors.primary.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        course.category.toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.primary,
+                        ),
                       ),
                     ),
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    const SizedBox(height: 12),
+                    Text(
+                      course.courseTitle,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      course.description,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey[600],
+                        height: 1.5,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
                       children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            course.category,
-                            style: const TextStyle(
-                              fontSize: 12,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
+                        _buildCourseMetric(
+                          FluentIcons.book_24_regular,
+                          '${course.chapters.length} chapitres',
+                          Colors.blue,
+                        ),
+                        const SizedBox(width: 16),
+                        _buildCourseMetric(
+                          FluentIcons.timer_24_regular,
+                          '${course.chapters.length * 30} min',
+                          Colors.orange,
                         ),
                       ],
                     ),
-                  ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        course.courseTitle,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        course.description,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        children: [
-                          _buildCourseMetric(
-                            FluentIcons.book_24_filled,
-                            '${course.chapters.length} ${"home_chapter".tr}',
-                            Colors.blue,
-                          ),
-                          const SizedBox(width: 16),
-                          _buildCourseMetric(
-                            FluentIcons.quiz_new_24_filled,
-                            '${course.quiz.length} ${"home_quiz".tr}',
-                            Colors.orange,
-                          ),
-                          const SizedBox(width: 16),
-                          _buildCourseMetric(
-                            FluentIcons.flash_24_filled,
-                            '${course.flashcards.length} ${'home_flashcards'.tr}',
-                            Colors.purple,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -405,8 +464,8 @@ class HomeView extends GetView<HomeController> {
   Widget _buildCourseMetric(IconData icon, String text, Color color) {
     return Container(
       padding: const EdgeInsets.symmetric(
-        horizontal: 9,
-        vertical: 2,
+        horizontal: 12,
+        vertical: 6,
       ),
       decoration: BoxDecoration(
         color: color.withOpacity(0.1),
@@ -436,7 +495,7 @@ class HomeView extends GetView<HomeController> {
   Widget _buildEmptyState() {
     return Container(
       margin: const EdgeInsets.all(20),
-      padding: const EdgeInsets.all(40),
+      padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
@@ -457,7 +516,7 @@ class HomeView extends GetView<HomeController> {
               shape: BoxShape.circle,
             ),
             child: Icon(
-              FluentIcons.book_24_filled,
+              FluentIcons.book_add_24_filled,
               size: 40,
               color: AppColors.primary,
             ),
@@ -465,37 +524,40 @@ class HomeView extends GetView<HomeController> {
           const SizedBox(height: 24),
           Text(
             'home_empty_title'.tr,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.black87,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           Text(
             'home_empty_message'.tr,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
               color: Colors.grey[600],
+              height: 1.5,
             ),
           ),
           const SizedBox(height: 24),
-          ElevatedButton(
+          ElevatedButton.icon(
             onPressed: () => Get.toNamed(Routes.CREATE_COURSE_GENERATE_TOPIC),
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(
-                horizontal: 32,
+                horizontal: 24,
                 vertical: 16,
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
             ),
-            child: Text(
+            icon: const Icon(FluentIcons.add_24_filled),
+            label: Text(
               'home_create'.tr,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -505,44 +567,4 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-
-  Widget _buildFloatingActionButton() {
-    return FloatingActionButton.extended(
-      onPressed: () => Get.toNamed(Routes.CREATE_COURSE_GENERATE_TOPIC),
-      backgroundColor: AppColors.primary,
-      icon: const Icon(FluentIcons.add_24_filled),
-      label: Text(
-        'home_new'.tr,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-}
-
-class CirclePatternPainter extends CustomPainter {
-  final Color color;
-
-  CirclePatternPainter({required this.color});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1;
-
-    for (var i = 0; i < 5; i++) {
-      final radius = (i + 1) * 30.0;
-      canvas.drawCircle(
-        Offset(size.width - 50, 50),
-        radius,
-        paint,
-      );
-    }
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }

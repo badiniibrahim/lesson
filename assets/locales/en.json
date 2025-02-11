@@ -9,7 +9,9 @@
     "verification_text": "Please validate your email",
     "user_not_found": "No user found for that email.",
     "wrong_password": "Wrong password provided for that user.",
-    "or": "Or continue with"
+    "or": "Or continue with",
+    "message": "Welcome",
+    "connect_message": "Log in to continue your learning"
   },
   "sign_up": {
     "email": "Email",
@@ -19,7 +21,9 @@
     "btn_text": "Create Account",
     "already_account": "Already have an account ?",
     "sign_up": "Sign In",
-    "auth_verification_email_sent": "A verification email has been sent to you. Please check your inbox and follow the instructions."
+    "auth_verification_email_sent": "A verification email has been sent to you. Please check your inbox and follow the instructions.",
+    "message": "Welcome",
+    "connect_message": "Log in to continue your learning"
   },
 
   "dashboard": {
@@ -123,13 +127,13 @@
     "title": "Progress Dashboard",
     "message": "Track your progress and achievements",
     "total": "Total Progress",
-    "end_chapter": "Completed Chapters",
+    "end_chapter": "Completed\nChapters",
     "score": "Average Quiz Score",
-    "flashcard": "Mastered Flashcards",
+    "flashcard": "Mastered\nFlashcards",
     "state": "Detailed Statistics",
     "message_1": "Total Learning Time",
     "message_2": "Completed Sequences",
-    "message_3": "Best Quiz Score",
+    "message_3": "Best Quiz\nScore",
     "message_4": "Consecutive Days",
     "heb": "Weekly Progress",
     "course": "Your Ongoing Courses",
